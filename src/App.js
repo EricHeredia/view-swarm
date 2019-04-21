@@ -6,7 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchTerm: 'woman'
+      searchTerm: ''
     }
 
     //console.log("This is my initializer")
@@ -30,7 +30,12 @@ class App extends Component {
 
     performSearch(searchTerm) {
       console.log("Perform search using")
-      let urlString = 'https://api.themoviedb.org/3/search/movie?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&include_adult=false&query=' + searchTerm
+      let urlString = ''
+      if (searchTerm === '') {
+        urlString = 'https://api.themoviedb.org/3/movie/now_playing?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1'
+      } else {
+        urlString = 'https://api.themoviedb.org/3/search/movie?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&include_adult=false&query=' + searchTerm
+      }
       fetch(urlString)
         .then(function(response) {
           return response.json()
@@ -55,12 +60,15 @@ class App extends Component {
 
   searchChangeHandler = (event) => {
     //console.log(event.target.value)
-    if (event.target.value === '') {
+    if (event.target.value === ' ') {
+      this.setState({searchTerm: ''})
       this.performSearch(this.state.searchTerm)
+    } else if (event.target.value === '') {
+      this.setState({searchTerm: ''})
+      this.performSearch('')
     } else {
       this.setState({searchTerm: event.target.value})
-      const searchTerm = event.target.value
-      this.performSearch(searchTerm)
+      this.performSearch(event.target.value)
     }
   }
 
@@ -88,7 +96,7 @@ class App extends Component {
           paddingTop: 8,
           paddingBottom: 8,
           paddingLeft: 16
-        }} onChange={this.searchChangeHandler} placeholder="Enter search term"/>
+        }} value={this.state.searchTerm} onChange={this.searchChangeHandler} placeholder="Enter search term"/>
 
         {this.state.rows}
 

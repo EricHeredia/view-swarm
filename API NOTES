@@ -1,0 +1,8 @@
+API Key: 5c27811081e9d0437b14f8f5b43b0c23
+
+In Theaters: https://api.themoviedb.org/3/movie/now_playing?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1
+
+Movie Search: https://api.themoviedb.org/3/search/movie?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&include_adult=false&query= + searchTerm
+
+Movie Poster: http://image.tmdb.org/t/p/w185 + poster_path
+
