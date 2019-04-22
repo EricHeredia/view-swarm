@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
 import MovieRow from './components/MovieRow.js'
+import SearchFilters from './components/SearchFilters.js'
+
+let searchTerm
+let incAdult
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchTerm: ''
+      searchTerm: '',
+      searchUrls: {
+        movieUrl: 'https://api.themoviedb.org/3/search/movie?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&include_adult=' + incAdult + '&region=US&query=' + searchTerm,
+        tvUrl: 'https://api.themoviedb.org/3/search/tv?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&query=' + searchTerm,
+        multiUrl: 'https://api.themoviedb.org/3/search/multi?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&include_adult=' + incAdult + '&region=US&query=' + searchTerm
+      }
     }
 
     //console.log("This is my initializer")
@@ -29,7 +38,6 @@ class App extends Component {
     }
 
     performSearch(searchTerm) {
-      console.log("Perform search using")
       let urlString = ''
       if (searchTerm === '') {
         urlString = 'https://api.themoviedb.org/3/movie/now_playing?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1'
@@ -41,7 +49,7 @@ class App extends Component {
           return response.json()
         })
         .then((searchResults) => {
-          console.log(searchResults)
+          //console.log(searchResults)
           const results = searchResults.results
           //console.log(results[0])
 
@@ -73,6 +81,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(document.getElementById('movieFilters').checkbox)
     return (
       <div className="App">
 
@@ -88,6 +97,8 @@ class App extends Component {
             </tr>
           </tbody>
         </table>
+
+        <SearchFilters />
 
         <input style={{
           fontSize: 24,
