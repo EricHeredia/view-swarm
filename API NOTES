@@ -4,7 +4,11 @@ In Theaters: 'https://api.themoviedb.org/3/movie/now_playing?api_key=5c27811081e
 
 Movie Search: 'https://api.themoviedb.org/3/search/movie?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&include_adult=' + incAdult + '&region=US&query=' + searchTerm
 
+Popular Movies: 'https://api.themoviedb.org/3/movie/popular?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1'
+
 TV Search: 'https://api.themoviedb.org/3/search/tv?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&query=' + searchTerm
+
+Popular TV: 'https://api.themoviedb.org/3/tv/popular?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1'
 
 Multi Search: 'https://api.themoviedb.org/3/search/multi?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&include_adult=' + incAdult + '&region=US&query=' + searchTerm
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import MovieRow from './components/MovieRow.js'
-import SearchFilters from './components/SearchFilters.js'
 
 let searchTerm
 let incAdult
@@ -11,30 +10,16 @@ class App extends Component {
     super(props)
     this.state = {
       searchTerm: '',
+      rButton: 'rMulti',
       searchUrls: {
-        movieUrl: 'https://api.themoviedb.org/3/search/movie?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&include_adult=' + incAdult + '&region=US&query=' + searchTerm,
-        tvUrl: 'https://api.themoviedb.org/3/search/tv?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&query=' + searchTerm,
-        multiUrl: 'https://api.themoviedb.org/3/search/multi?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&include_adult=' + incAdult + '&region=US&query=' + searchTerm
+        rMovies: 'https://api.themoviedb.org/3/search/movie?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&include_adult=' + incAdult + '&region=US&query=' + searchTerm,
+        moviePop: 'https://api.themoviedb.org/3/movie/popular?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1',
+        rTVSHows: 'https://api.themoviedb.org/3/search/tv?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&query=' + searchTerm,
+        tvPop: 'https://api.themoviedb.org/3/tv/popular?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1'
       }
     }
 
-    //console.log("This is my initializer")
-
-    //const movies = [
-      //{id: 0, poster_src: "https://image.tmdb.org/t/p/original/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg", title: "Avengers: Infinity War", overview: "this is the review of the movie"},
-      //{id: 1, poster_src: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/cezWGskPY5x7GaglTTRN4Fugfb8.jpg", title: "The Avengers", overview: "this is the second review of the movie"},
-    //]
-
-    //var movieRows = []
-    //movies.forEach((movie) => {
-      //console.log(movie.title)
-      //const movieRow = <MovieRow movie={movie}/>
-      //movieRows.push(movieRow)
-    //})
-
-    //this.state = {rows: movieRows}
-
-      this.performSearch(this.state.searchTerm)
+    this.performSearch(this.state.searchTerm)
     }
 
     performSearch(searchTerm) {
@@ -44,20 +29,19 @@ class App extends Component {
       } else {
         urlString = 'https://api.themoviedb.org/3/search/movie?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&include_adult=false&query=' + searchTerm
       }
+      //console.log(this.state.searchUrls[this.state.rButton])
+
       fetch(urlString)
         .then(function(response) {
           return response.json()
         })
         .then((searchResults) => {
-          //console.log(searchResults)
           const results = searchResults.results
-          //console.log(results[0])
 
           var movieRows= []
 
           results.forEach((movie) => {
             movie.poster_src = "http://image.tmdb.org/t/p/w185" + movie.poster_path
-            //console.log(movie.title)
             const movieRow = <MovieRow key={movie.id} movie={movie}/>
             movieRows.push(movieRow)
           })
@@ -65,6 +49,18 @@ class App extends Component {
           this.setState({rows: movieRows})
         })
     }
+
+  buildSearchUrl = (e) => {
+    let value = e.currentTarget.value
+    if (value === "rTVShows") {
+      document.getElementById("aFilter").disabled = true
+      document.getElementById("aFilter").checked = false
+    } else {
+      document.getElementById("aFilter").disabled = false
+    }
+    this.setState({rButton: value, cAdult: document.getElementsByName('adultFilter')[0].checked})
+    this.performSearch()
+  }
 
   searchChangeHandler = (event) => {
     //console.log(event.target.value)
@@ -81,7 +77,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(document.getElementById('movieFilters').checkbox)
+    //console.log(document.getElementById('movieFilters').checkbox)
     return (
       <div className="App">
 
@@ -98,7 +94,34 @@ class App extends Component {
           </tbody>
         </table>
 
-        <SearchFilters />
+        <div id="movieFilters" radiobutton={this.state.rButton} checkbox={this.state.cAdult}>
+          <input 
+            type="radio" 
+            name="typeFilter" 
+            value="rMovies" 
+            onChange={this.buildSearchUrl} 
+          /> Movies 
+          <input 
+            type="radio" 
+            name="typeFilter" 
+            value="rTVShows" 
+            onChange={this.buildSearchUrl} 
+          /> TV Shows
+          <input 
+            type="radio" 
+            name="typeFilter" 
+            value="rMulti" 
+            onChange={this.buildSearchUrl} 
+            defaultChecked 
+          /> Multi
+          <input 
+            type="checkbox" 
+            name="adultFilter" 
+            id="aFilter" 
+            value={this.state.cAdult}
+            onChange={this.buildSearchUrl}
+          /> Adult
+        </div>
 
         <input style={{
           fontSize: 24,
