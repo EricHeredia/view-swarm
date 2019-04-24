@@ -10,12 +10,12 @@ class App extends Component {
     super(props)
     this.state = {
       searchTerm: '',
-      rButton: 'rMulti',
+      rButton: 'rMovies',
       searchUrls: {
-        rMovies: 'https://api.themoviedb.org/3/search/movie?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&include_adult=' + incAdult + '&region=US&query=' + searchTerm,
-        moviePop: 'https://api.themoviedb.org/3/movie/popular?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1',
-        rTVSHows: 'https://api.themoviedb.org/3/search/tv?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&query=' + searchTerm,
-        tvPop: 'https://api.themoviedb.org/3/tv/popular?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1'
+        rMovies: 'https://api.themoviedb.org/3/search/movie?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&include_adult=false&region=US&query=',
+        rMoviesPop: 'https://api.themoviedb.org/3/movie/popular?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1',
+        rTVShows: 'https://api.themoviedb.org/3/search/tv?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&query=',
+        rTVShowsPop: 'https://api.themoviedb.org/3/tv/popular?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1'
       }
     }
 
@@ -23,11 +23,12 @@ class App extends Component {
     }
 
     performSearch(searchTerm) {
+      console.log(this.state.searchUrls[this.state.rButton])
       let urlString = ''
       if (searchTerm === '') {
-        urlString = 'https://api.themoviedb.org/3/movie/now_playing?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1'
+        urlString = this.state.searchUrls[this.state.rButton + 'Pop']
       } else {
-        urlString = 'https://api.themoviedb.org/3/search/movie?api_key=5c27811081e9d0437b14f8f5b43b0c23&language=en-US&page=1&include_adult=false&query=' + searchTerm
+        urlString = this.state.searchUrls[this.state.rButton] + searchTerm
       }
       //console.log(this.state.searchUrls[this.state.rButton])
 
@@ -52,14 +53,9 @@ class App extends Component {
 
   buildSearchUrl = (e) => {
     let value = e.currentTarget.value
-    if (value === "rTVShows") {
-      document.getElementById("aFilter").disabled = true
-      document.getElementById("aFilter").checked = false
-    } else {
-      document.getElementById("aFilter").disabled = false
-    }
-    this.setState({rButton: value, cAdult: document.getElementsByName('adultFilter')[0].checked})
-    this.performSearch()
+    this.setState({rButton: value}, () => 
+      {this.performSearch(this.state.searchTerm)
+    })
   }
 
   searchChangeHandler = (event) => {
@@ -99,7 +95,8 @@ class App extends Component {
             type="radio" 
             name="typeFilter" 
             value="rMovies" 
-            onChange={this.buildSearchUrl} 
+            onChange={this.buildSearchUrl}
+            defaultChecked
           /> Movies 
           <input 
             type="radio" 
@@ -107,20 +104,6 @@ class App extends Component {
             value="rTVShows" 
             onChange={this.buildSearchUrl} 
           /> TV Shows
-          <input 
-            type="radio" 
-            name="typeFilter" 
-            value="rMulti" 
-            onChange={this.buildSearchUrl} 
-            defaultChecked 
-          /> Multi
-          <input 
-            type="checkbox" 
-            name="adultFilter" 
-            id="aFilter" 
-            value={this.state.cAdult}
-            onChange={this.buildSearchUrl}
-          /> Adult
         </div>
 
         <input style={{
