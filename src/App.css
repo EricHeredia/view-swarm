@@ -1,6 +1,22 @@
+body {
+  background-color: #000;
+}
+
 .titleBar {
   background-color: #000;
   display: block;
   color: #fff;
   padding-left: 20px;
+}
+
+#movieFilters span {
+  color: #eee;
+}
+
+#movieData {
+  width: 100%;
+  border: 5px solid black;
+  border-left: 0;
+  background-color: #eee;
+  text-align: left;
 }

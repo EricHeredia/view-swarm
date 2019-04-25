@@ -91,25 +91,29 @@ class App extends Component {
         </table>
 
         <div id="movieFilters" radiobutton={this.state.rButton} checkbox={this.state.cAdult}>
+        <span>
           <input 
             type="radio" 
             name="typeFilter" 
             value="rMovies" 
             onChange={this.buildSearchUrl}
             defaultChecked
-          /> Movies 
+          />Movies 
+        </span>
+        <span>  
           <input 
             type="radio" 
             name="typeFilter" 
             value="rTVShows" 
             onChange={this.buildSearchUrl} 
-          /> TV Shows
+          />TV Shows
+        </span>
         </div>
 
         <input style={{
           fontSize: 24,
           display: 'block',
-          width: "99%",
+          width: "60%",
           paddingTop: 8,
           paddingBottom: 8,
           paddingLeft: 16
