@@ -13,6 +13,10 @@ body {
   color: #eee;
 }
 
+#movieData:active {
+  background-color: #aaa;
+}
+
 #movieData {
   width: 100%;
   border: 5px solid black;
