@@ -32,18 +32,22 @@ class SearchFilters extends React.Component {
     //console.log(this.state.cAdult)
       return (
         <div id="movieFilters" radiobutton={this.state.rButton} checkbox={this.state.cAdult}>
+        <label>
           <input 
             type="radio" 
             name="typeFilter" 
             value="rMovies" 
             onChange={this.buildSearchUrl} 
           /> Movies 
+        </label>
+        <label>
           <input 
             type="radio" 
             name="typeFilter" 
             value="rTVShows" 
             onChange={this.buildSearchUrl} 
           /> TV Shows
+        </label>
           <input 
             type="radio" 
             name="typeFilter" 

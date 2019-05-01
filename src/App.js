@@ -74,6 +74,15 @@ class App extends Component {
 
   render() {
     //console.log(document.getElementById('movieFilters').checkbox)
+
+    if (this.state.rButton === 'rMovies') {
+      document.getElementById('rMovies').style.fontWeight('bold')
+      document.getElementById('rTVShows').style.fontWeight('normal')
+    } else {
+      document.getElementById('rMovies').style.fontWeight('normal')
+      document.getElementById('rTVShows').style.fontWeight('bold')
+    }
+
     return (
       <div className="App">
 
@@ -91,23 +100,27 @@ class App extends Component {
         </table>
 
         <div id="movieFilters" radiobutton={this.state.rButton} checkbox={this.state.cAdult}>
-        <span>
+        <label class="radio-label">
           <input 
             type="radio" 
             name="typeFilter" 
+            id="rMovies"
             value="rMovies" 
+            class="radio-class"
             onChange={this.buildSearchUrl}
             defaultChecked
-          />Movies 
-        </span>
-        <span>  
+          />MOVIES 
+        </label>
+        <label class="radio-label">  
           <input 
             type="radio" 
             name="typeFilter" 
+            id="rTVShows"
             value="rTVShows" 
+            class="radio-class"
             onChange={this.buildSearchUrl} 
-          />TV Shows
-        </span>
+          />TV SHOWS
+        </label>
         </div>
 
         <input style={{
