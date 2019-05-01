@@ -75,14 +75,6 @@ class App extends Component {
   render() {
     //console.log(document.getElementById('movieFilters').checkbox)
 
-    if (this.state.rButton === 'rMovies') {
-      document.getElementById('rMovies').style.fontWeight('bold')
-      document.getElementById('rTVShows').style.fontWeight('normal')
-    } else {
-      document.getElementById('rMovies').style.fontWeight('normal')
-      document.getElementById('rTVShows').style.fontWeight('bold')
-    }
-
     return (
       <div className="App">
 
@@ -100,22 +92,26 @@ class App extends Component {
         </table>
 
         <div id="movieFilters" radiobutton={this.state.rButton} checkbox={this.state.cAdult}>
-        <label class="radio-label">
+        <label 
+          class="radio-label"
+          style={{fontWeight: this.state.rButton === 'rMovies' ? 'bold' : 'normal'}}
+        >
           <input 
             type="radio" 
             name="typeFilter" 
-            id="rMovies"
             value="rMovies" 
             class="radio-class"
             onChange={this.buildSearchUrl}
             defaultChecked
           />MOVIES 
         </label>
-        <label class="radio-label">  
+        <label 
+          class="radio-label"
+          style={{fontWeight: this.state.rButton === 'rTVShows' ? 'bold' : 'normal'}}
+        >  
           <input 
             type="radio" 
             name="typeFilter" 
-            id="rTVShows"
             value="rTVShows" 
             class="radio-class"
             onChange={this.buildSearchUrl} 
