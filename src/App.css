@@ -7,11 +7,7 @@ body {
   background-color: #000;
   display: block;
   color: #fff;
-  padding-left: 20px;
-}
-
-#movieFilters span {
-  color: #eee;
+  padding-left: 0;
 }
 
 #movieData:active {
@@ -24,8 +20,9 @@ body {
 }
 
 .radio-label {
+  display: inline-block;
   color: #eee;
-  padding-right: 20px;
+  width: 100px;
 }
 
 #movieData {

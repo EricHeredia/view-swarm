@@ -85,7 +85,7 @@ class App extends Component {
                 <img alt="app icon" width="150" src="tmdbIcon.svg"/>
               </td>
               <td>
-                <h1>MoviesDB Search</h1>
+                <h1>Simple Search</h1>
               </td>
             </tr>
           </tbody>
@@ -94,7 +94,10 @@ class App extends Component {
         <div id="movieFilters" radiobutton={this.state.rButton} checkbox={this.state.cAdult}>
         <label 
           class="radio-label"
-          style={{fontWeight: this.state.rButton === 'rMovies' ? 'bold' : 'normal'}}
+          style={{
+            fontWeight: this.state.rButton === 'rMovies' ? 'bold' : 'normal',
+            color: this.state.rButton === 'rMovies' ? '#00cc77' : 'white'
+          }}
         >
           <input 
             type="radio" 
@@ -107,7 +110,10 @@ class App extends Component {
         </label>
         <label 
           class="radio-label"
-          style={{fontWeight: this.state.rButton === 'rTVShows' ? 'bold' : 'normal'}}
+          style={{
+            fontWeight: this.state.rButton === 'rTVShows' ? 'bold' : 'normal',
+            color: this.state.rButton === 'rTVShows' ? '#00cc77' : 'white'
+          }}
         >  
           <input 
             type="radio" 
