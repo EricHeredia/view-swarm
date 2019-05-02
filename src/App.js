@@ -95,7 +95,7 @@ class App extends Component {
         <label 
           class="radio-label"
           style={{
-            fontWeight: this.state.rButton === 'rMovies' ? 'bold' : 'normal',
+            //fontWeight: this.state.rButton === 'rMovies' ? 'bold' : 'normal',
             color: this.state.rButton === 'rMovies' ? '#00cc77' : 'white'
           }}
         >
@@ -111,7 +111,7 @@ class App extends Component {
         <label 
           class="radio-label"
           style={{
-            fontWeight: this.state.rButton === 'rTVShows' ? 'bold' : 'normal',
+            //fontWeight: this.state.rButton === 'rTVShows' ? 'bold' : 'normal',
             color: this.state.rButton === 'rTVShows' ? '#00cc77' : 'white'
           }}
         >  

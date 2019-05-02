@@ -23,6 +23,7 @@ body {
   display: inline-block;
   color: #eee;
   width: 100px;
+  font-weight: bold;
 }
 
 #movieData {
