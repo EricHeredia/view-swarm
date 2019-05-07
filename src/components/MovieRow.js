@@ -7,7 +7,7 @@ class MovieRow extends React.Component {
     const url = "https://www.themoviedb.org/" + movOrTv + "/" + this.props.movie.id
     window.location.href = url 
   }
-
+  // delete this
   render() {
     let toShorten = () => {
       let fullOver = this.props.movie.overview
