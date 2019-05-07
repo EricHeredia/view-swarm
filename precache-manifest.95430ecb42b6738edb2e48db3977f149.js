@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "f64e3a7c5b5d4ca12854",
+    "revision": "9eb23d786817b5ca3e28",
     "url": "/view-swarm/static/css/main.48c077c3.chunk.css"
   },
   {
-    "revision": "f64e3a7c5b5d4ca12854",
-    "url": "/view-swarm/static/js/main.e12b82f2.chunk.js"
+    "revision": "9eb23d786817b5ca3e28",
+    "url": "/view-swarm/static/js/main.65ff6999.chunk.js"
   },
   {
     "revision": "fea7551514f499b1adcc",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/view-swarm/static/js/2.d6a534e5.chunk.js"
   },
   {
-    "revision": "851b77243951428b3ba8a0f7c7fd1c9b",
+    "revision": "8d918273e05b0e65a420598c2b05047b",
     "url": "/view-swarm/index.html"
   }
 ];
